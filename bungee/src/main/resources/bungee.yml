@@ -7,8 +7,3 @@ commands:
     description: Connector plugin command
     permission: slconnector.command
     usage: /<command> teleport|teleporttoplayer|servercommand <server|p:player>|playercommand <player> <command...>
-    aliases:
-    - connectorbungee
-    - connectorcommandbungee
-    - connpluginbungee
-    - cpb

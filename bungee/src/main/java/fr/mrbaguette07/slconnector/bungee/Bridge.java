@@ -1,6 +1,5 @@
 package fr.mrbaguette07.slconnector.bungee;
 
-
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 import com.google.common.io.ByteArrayDataInput;

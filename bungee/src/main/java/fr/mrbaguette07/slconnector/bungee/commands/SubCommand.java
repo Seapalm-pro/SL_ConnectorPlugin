@@ -1,0 +1,84 @@
+package fr.mrbaguette07.slconnector.bungee.commands;
+
+import fr.mrbaguette07.bungeeplugin.PluginCommand;
+import fr.mrbaguette07.slconnector.bungee.Bungeeslconnector;
+import net.md_5.bungee.api.CommandSender;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+public class SubCommand extends PluginCommand<Bungeeslconnector> {
+    private Map<String, SubCommand> subCommands = new LinkedHashMap<>();
+    private Map<String, SubCommand> subCommandAliases = new LinkedHashMap<>();
+
+    public SubCommand(Bungeeslconnector plugin, String name) {
+        super(plugin, name);
+    }
+
+    public SubCommand(Bungeeslconnector plugin, String usage, String permission, String... aliases) {
+        super(plugin, usage.split(" ", 2)[0], permission, null, null, "/" + usage, aliases);
+    }
+
+    public void registerSubCommand(SubCommand subCommand) {
+        subCommands.put(subCommand.getName().toLowerCase(Locale.ROOT), subCommand);
+        for (String alias : subCommand.getAliases()) {
+            subCommandAliases.put(alias.toLowerCase(Locale.ROOT), subCommand);
+        }
+    }
+
+    public SubCommand getSubCommand(String name) {
+        SubCommand subCommand = subCommands.get(name.toLowerCase(Locale.ROOT));
+        if (subCommand == null) {
+            return subCommandAliases.get(name.toLowerCase(Locale.ROOT));
+        }
+        return subCommand;
+    }
+
+    @Override
+    protected boolean run(CommandSender sender, String[] args) {
+        if (args.length == 0) {
+            return false;
+        }
+        SubCommand subCommand = getSubCommand(args[0]);
+        if (subCommand != null) {
+            subCommand.execute(sender, Arrays.copyOfRange(args, 1, args.length));
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Iterable<String> onTabComplete(CommandSender sender, String[] args) {
+        if (!hasCommandPermission(sender)) {
+            return Collections.emptySet();
+        }
+        if (args.length == 0 || args[0].isEmpty()) {
+            return new ArrayList<>(subCommands.keySet());
+        }
+        SubCommand subCommand = getSubCommand(args[0]);
+        if (subCommand != null && subCommand.hasCommandPermission(sender)) {
+            return subCommand.onTabComplete(sender, Arrays.copyOfRange(args, 1, args.length));
+        }
+        List<String> completions = new ArrayList<>();
+        for (Map.Entry<String, SubCommand> e : subCommands.entrySet()) {
+            if (e.getKey().startsWith(args[0].toLowerCase(Locale.ROOT)) && e.getValue().hasCommandPermission(sender)) {
+                completions.add(e.getKey());
+            }
+        }
+        for (Map.Entry<String, SubCommand> e : subCommandAliases.entrySet()) {
+            if (e.getKey().startsWith(args[0].toLowerCase(Locale.ROOT)) && e.getValue().hasCommandPermission(sender)) {
+                completions.add(e.getKey());
+            }
+        }
+        return completions;
+    }
+
+    public Map<String, SubCommand> getSubCommands() {
+        return subCommands;
+    }
+}

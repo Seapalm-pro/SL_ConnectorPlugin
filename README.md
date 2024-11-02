@@ -1,1 +1,1 @@
-# SL_ConnectorPlugin
+# SL_slconnector

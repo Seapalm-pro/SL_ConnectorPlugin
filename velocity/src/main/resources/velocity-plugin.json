@@ -1,0 +1,9 @@
+{
+  "id": "slconnector",
+  "name": "slconnector",
+  "version": "${minecraft.plugin.version}",
+  "main": "fr.mrbaguette07.slconnector.velocity.Velocityslconnector",
+  "authors": [
+    "mrbaguette07"
+  ]
+}

@@ -1,0 +1,15 @@
+name: slconnector
+version: ${minecraft.plugin.version}
+main: fr.mrbaguette07.slconnector.bukkit.Bukkitslconnector
+api-version: 1.13
+authors: [mrbaguette07]
+commands:
+  slconnector:
+    description: Connector plugin command
+    permission: slconnector.command
+    usage: /<command> teleport|teleportoplayer|servercommand <server|p:player>|proxyplayercommand <player>|proxycommand <command...>
+    aliases:
+    - connector
+    - connectorcommand
+    - connplugin
+    - cp

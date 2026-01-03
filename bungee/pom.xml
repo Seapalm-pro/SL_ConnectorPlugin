@@ -28,6 +28,7 @@
         <dependency>
             <groupId>fr.mrbaguette07</groupId>
             <artifactId>bungeeplugin</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>${groupId}</groupId>

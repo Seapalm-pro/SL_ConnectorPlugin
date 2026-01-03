@@ -32,7 +32,6 @@
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
-        <!--
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>bungee</artifactId>
@@ -45,7 +44,6 @@
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
-        -->
         <dependency>
             <groupId>io.lettuce</groupId>
             <artifactId>lettuce-core</artifactId>
@@ -61,13 +59,11 @@
             <artifactId>paperlib</artifactId>
             <scope>compile</scope>
         </dependency>
-        <!--
         <dependency>
             <groupId>fr.mrbaguette07</groupId>
             <artifactId>bungeeplugin</artifactId>
             <scope>compile</scope>
         </dependency>
-        -->
     </dependencies>
 
     <build>

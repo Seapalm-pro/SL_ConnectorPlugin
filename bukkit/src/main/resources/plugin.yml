@@ -1,7 +1,7 @@
 name: slconnector
 version: ${minecraft.plugin.version}
 main: fr.mrbaguette07.slconnector.bukkit.Bukkitslconnector
-api-version: 1.13
+api-version: 1.21
 authors: [mrbaguette07]
 commands:
   slconnector:

@@ -25,6 +25,10 @@
             <id>minebench-repo</id>
             <url>https://repo.minebench.de</url>
         </repository>
+        <repository>
+            <id>velocity</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
     </repositories>
 
     <dependencyManagement>
@@ -51,7 +55,7 @@
             <dependency>
                 <groupId>org.spigotmc</groupId>
                 <artifactId>spigot-api</artifactId>
-                <version>1.16.3-R0.1-SNAPSHOT</version>
+                <version>1.21.3-R0.1-SNAPSHOT</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -75,7 +79,7 @@
             <dependency>
                 <groupId>com.velocitypowered</groupId>
                 <artifactId>velocity-api</artifactId>
-                <version>3.3.0-SNAPSHOT</version>
+                <version>3.4.0-20251227.184534-115</version>
                 <scope>provided</scope>
             </dependency>
         </dependencies>

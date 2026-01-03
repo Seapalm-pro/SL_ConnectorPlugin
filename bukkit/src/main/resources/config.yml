@@ -14,10 +14,10 @@ redis:
   port: 6380
   db: 0
   timeout: 60
-  password: password1
+  password: "CHANGEZ_CE_MOT_DE_PASSE_IMMEDIATEMENT"
 
 mqtt:
   broker-uri: tcp://localhost:1883
   keep-alive: 30
-  username: mqttuser
-  password: password1
+  username: "CHANGEZ_CE_USERNAME"
+  password: "CHANGEZ_CE_MOT_DE_PASSE_IMMEDIATEMENT"

@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class ProxyPlayerCommand extends SubCommand {
@@ -23,17 +24,60 @@ public class ProxyPlayerCommand extends SubCommand {
             return false;
         }
 
-        Player player = plugin.getServer().getPlayerExact(args[0]);
-        if (player == null) {
-            sender.sendMessage("No player with the name " + args[0] + " is online on this server!");
+        if (!isValidPlayerName(args[0])) {
+            sender.sendMessage(ChatColor.RED + "Nom de joueur invalide !");
             return true;
         }
+
+        Player player = plugin.getServer().getPlayerExact(args[0]);
+        if (player == null) {
+            sender.sendMessage(ChatColor.RED + "Aucun joueur avec le nom " + args[0] + " n'est connecté sur ce serveur !");
+            return true;
+        }
+        
         String commandString = Arrays.stream(args).skip(1).collect(Collectors.joining(" "));
-        sender.sendMessage(ChatColor.GRAY + "Executing '" + commandString + "' on the proxy for player '"
+        
+        if (!isCommandAllowed(commandString)) {
+            sender.sendMessage(ChatColor.RED + "Cette commande n'est pas autorisée pour des raisons de sécurité.");
+            plugin.getLogger().warning("Le joueur " + sender.getName() + " a tenté d'exécuter une commande interdite en tant que " + player.getName() + " : " + commandString);
+            return true;
+        }
+        
+        sender.sendMessage(ChatColor.GRAY + "Exécution de '" + sanitizeForDisplay(commandString) + "' sur le proxy pour le joueur '"
                 + player.getName() + "'");
         plugin.getBridge().runProxyPlayerCommand(player, commandString).thenAccept(success -> sender
-                .sendMessage(success ? "Successfully executed command!" : "Error while executing the command."));
+                .sendMessage(success ? "Commande exécutée avec succès !" : "Erreur lors de l'exécution de la commande."));
         return true;
+    }
+    
+    private boolean isValidPlayerName(String playerName) {
+        return playerName != null && playerName.matches("^[a-zA-Z0-9_]{1,16}$");
+    }
+    
+    private boolean isCommandAllowed(String commandString) {
+        String lowerCmd = commandString.toLowerCase(Locale.ROOT).trim();
+        
+        String[] forbiddenCommands = {
+            "stop", "end", "restart", "alert", "perm", "server"
+        };
+        
+        for (String forbidden : forbiddenCommands) {
+            if (lowerCmd.startsWith(forbidden + " ") || lowerCmd.equals(forbidden)) {
+                return false;
+            }
+        }
+        
+        if (lowerCmd.contains("../") || lowerCmd.contains("..\\") || 
+            lowerCmd.contains(";") || lowerCmd.contains("|") || lowerCmd.contains("`")) {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    private String sanitizeForDisplay(String input) {
+        if (input == null) return "";
+        return input.replaceAll("§", "");
     }
 
     @Override

@@ -1,13 +1,11 @@
 package fr.mrbaguette07.slconnector.bukkit;
 
-import fr.mrbaguette07.slconnector.slconnector;
-import fr.mrbaguette07.slconnector.bukkit.commands.ConnectorCommand;
-import fr.mrbaguette07.slconnector.bukkit.connector.BukkitConnector;
-import fr.mrbaguette07.slconnector.bukkit.connector.MqttConnector;
-import fr.mrbaguette07.slconnector.bukkit.connector.PluginMessageConnector;
-import fr.mrbaguette07.slconnector.bukkit.connector.RedisConnector;
-import fr.mrbaguette07.slconnector.connector.ConnectingPlugin;
-import fr.mrbaguette07.slconnector.connector.MessageTarget;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.logging.Level;
+
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,11 +13,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.logging.Level;
+import fr.mrbaguette07.slconnector.bukkit.commands.ConnectorCommand;
+import fr.mrbaguette07.slconnector.bukkit.connector.BukkitConnector;
+import fr.mrbaguette07.slconnector.bukkit.connector.MqttConnector;
+import fr.mrbaguette07.slconnector.bukkit.connector.PluginMessageConnector;
+import fr.mrbaguette07.slconnector.bukkit.connector.RedisConnector;
+import fr.mrbaguette07.slconnector.connector.ConnectingPlugin;
+import fr.mrbaguette07.slconnector.connector.MessageTarget;
+import fr.mrbaguette07.slconnector.slconnector;
 
 public final class Bukkitslconnector extends JavaPlugin implements slconnector<Player>, Listener {
 

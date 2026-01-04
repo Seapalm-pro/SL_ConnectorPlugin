@@ -7,7 +7,6 @@ import java.util.UUID;
 
 /**
  * Événement Bukkit déclenché lorsqu'un joueur se déconnecte du proxy
- * Compatible avec Skript et d'autres plugins Bukkit
  */
 public class SLProxyPlayerDisconnectEvent extends Event {
     private static final HandlerList handlers = new HandlerList();

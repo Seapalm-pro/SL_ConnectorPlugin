@@ -6,8 +6,7 @@ import org.bukkit.event.HandlerList;
 import java.util.UUID;
 
 /**
- * Événement Bukkit déclenché lorsqu'un joueur se connecte au proxy (avant le join)
- * Compatible avec Skript et d'autres plugins Bukkit
+ * Événement Bukkit déclenché lorsqu'un joueur se connecte au proxy
  */
 public class SLProxyPlayerConnectEvent extends Event {
     private static final HandlerList handlers = new HandlerList();

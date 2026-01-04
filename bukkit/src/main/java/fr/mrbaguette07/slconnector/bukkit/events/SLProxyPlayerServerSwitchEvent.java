@@ -7,7 +7,6 @@ import java.util.UUID;
 
 /**
  * Événement Bukkit déclenché lorsqu'un joueur change de serveur sur le proxy
- * Compatible avec Skript et d'autres plugins Bukkit
  */
 public class SLProxyPlayerServerSwitchEvent extends Event {
     private static final HandlerList handlers = new HandlerList();

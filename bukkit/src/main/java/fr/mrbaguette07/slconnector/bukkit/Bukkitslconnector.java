@@ -21,11 +21,14 @@ import fr.mrbaguette07.slconnector.bukkit.connector.RedisConnector;
 import fr.mrbaguette07.slconnector.connector.ConnectingPlugin;
 import fr.mrbaguette07.slconnector.connector.MessageTarget;
 import fr.mrbaguette07.slconnector.slconnector;
+import fr.mrbaguette07.slconnector.event.EventManager;
 
 public final class Bukkitslconnector extends JavaPlugin implements slconnector<Player>, Listener {
 
     private BukkitConnector connector;
     private Bridge bridge;
+    private EventManager eventManager;
+    private ProxyEventHandler proxyEventHandler;
     private boolean debug = true;
     private String globalGroup;
     private Map<String, String> pluginGroups;
@@ -33,6 +36,9 @@ public final class Bukkitslconnector extends JavaPlugin implements slconnector<P
 
     @Override
     public void onEnable() {
+        eventManager = new EventManager();
+        proxyEventHandler = new ProxyEventHandler(this);
+        
         saveDefaultConfig();
         reloadConfig();
 
@@ -76,6 +82,8 @@ public final class Bukkitslconnector extends JavaPlugin implements slconnector<P
         getCommand("slconnector").setExecutor(new ConnectorCommand(this));
 
         bridge = new Bridge(this);
+        
+        connector.registerMessageHandler(this, "ProxyEvent", proxyEventHandler::handleMessage);
     }
 
     @Override
@@ -154,5 +162,10 @@ public final class Bukkitslconnector extends JavaPlugin implements slconnector<P
     @Override
     public String getServerName() {
         return serverName;
+    }
+
+    @Override
+    public EventManager getEventManager() {
+        return eventManager;
     }
 }

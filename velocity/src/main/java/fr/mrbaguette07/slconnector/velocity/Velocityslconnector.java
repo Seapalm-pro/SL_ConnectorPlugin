@@ -8,6 +8,7 @@ import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
 import fr.mrbaguette07.slconnector.slconnector;
+import fr.mrbaguette07.slconnector.event.EventManager;
 import fr.mrbaguette07.slconnector.velocity.commands.ConnectorCommand;
 import fr.mrbaguette07.slconnector.velocity.connector.VelocityConnector;
 import fr.mrbaguette07.slconnector.velocity.connector.MqttConnector;
@@ -34,6 +35,7 @@ public final class Velocityslconnector implements slconnector<Player> {
     private PluginConfig config;
     private VelocityConnector connector;
     private Bridge bridge;
+    private EventManager eventManager;
     private boolean debug = true;
     private String serverId;
 
@@ -42,6 +44,7 @@ public final class Velocityslconnector implements slconnector<Player> {
         this.proxy = proxy;
         this.logger = logger;
         this.dataFolder = dataFolder.toFile();
+        this.eventManager = new EventManager();
     }
 
     @Subscribe
@@ -84,6 +87,9 @@ public final class Velocityslconnector implements slconnector<Player> {
         getProxy().getCommandManager().register(command, command);
 
         bridge = new Bridge(this);
+
+        VelocityEventListener eventListener = new VelocityEventListener(this);
+        getProxy().getEventManager().register(this, eventListener);
     }
 
     @Subscribe
@@ -167,5 +173,10 @@ public final class Velocityslconnector implements slconnector<Player> {
 
     public InputStream getResourceAsStream(String file) {
         return getClass().getClassLoader().getResourceAsStream(file);
+    }
+
+    @Override
+    public EventManager getEventManager() {
+        return eventManager;
     }
 }

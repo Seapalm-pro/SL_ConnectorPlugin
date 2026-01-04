@@ -3,6 +3,7 @@ package fr.mrbaguette07.slconnector;
 import fr.mrbaguette07.slconnector.connector.ConnectingPlugin;
 import fr.mrbaguette07.slconnector.connector.Connector;
 import fr.mrbaguette07.slconnector.connector.MessageTarget;
+import fr.mrbaguette07.slconnector.event.EventManager;
 
 import java.util.Locale;
 import java.util.Map;
@@ -63,4 +64,6 @@ public interface slconnector<R> extends ConnectingPlugin {
     }
 
     void runAsync(Runnable runnable);
+
+    EventManager getEventManager();
 }

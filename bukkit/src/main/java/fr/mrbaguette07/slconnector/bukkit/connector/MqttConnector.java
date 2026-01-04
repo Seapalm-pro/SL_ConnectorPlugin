@@ -7,9 +7,11 @@ import fr.mrbaguette07.slconnector.connector.MqttConnection;
 
 public class MqttConnector extends BukkitConnector {
     private final MqttConnection connection;
+    private final ProxyEventHandler eventHandler;
 
     public MqttConnector(Bukkitslconnector plugin) {
         super(plugin, false);
+        this.eventHandler = new ProxyEventHandler(plugin);
         connection = new MqttConnection(
                 plugin,
                 plugin.getConfig().getString("mqtt.broker-uri"),
@@ -18,6 +20,8 @@ public class MqttConnector extends BukkitConnector {
                 plugin.getConfig().getString("mqtt.password"),
                 plugin.getConfig().getInt("mqtt.keep-alive"),
                 (receiver, message) -> plugin.runSync(() -> handle(receiver, message)));
+        
+        registerMessageHandler(plugin, "ProxyEvent", (player, message) -> eventHandler.handleMessage(player, message));
     }
 
     @Override

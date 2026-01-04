@@ -78,7 +78,7 @@ public class VelocityEventBroadcaster {
      */
     private void broadcastEvent(byte[] data) {
         try {
-            plugin.getConnector().sendData(plugin, "", MessageTarget.ALL_QUEUE, data);
+            plugin.getConnector().sendData(plugin, "ProxyEvent", MessageTarget.ALL_QUEUE, data);
         } catch (Exception e) {
             plugin.logError("Erreur lors de la diffusion d'un événement proxy", e);
         }

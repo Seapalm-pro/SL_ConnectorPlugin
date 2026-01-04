@@ -52,7 +52,7 @@ public class PluginConfig {
                     config = defaultConfig.copy();
                 }
             }
-            plugin.logDebug("Loaded " + configFile.getName());
+            plugin.logDebug("Chargement de " + configFile.getName());
             return true;
         } catch (IOException e) {
             plugin.logError("Impossible de charger le fichier de configuration " + configFile.getName(), e);

@@ -95,7 +95,7 @@ public class PluginMessageConnector extends VelocityConnector {
         } catch (IllegalArgumentException e) {
             plugin.logError("Cible de message invalide ! " + e.getMessage());
         } catch (VersionMismatchException e) {
-            plugin.logWarning(e.getMessage() + ". Ignoring message!");
+            plugin.logWarning(e.getMessage() + ". Message ignoré !");
         }
     }
 

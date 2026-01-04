@@ -76,6 +76,7 @@ public final class Velocityslconnector implements slconnector<Player> {
                 break;
             case "redis":
                 connector = new RedisConnector(this);
+                logInfo("Utilisation du messenger Redis");
                 break;
         }
 

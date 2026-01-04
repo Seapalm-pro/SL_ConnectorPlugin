@@ -92,9 +92,6 @@ public class VelocityEventListener {
         }
     }
 
-    /**
-     * Déclenché lorsqu'un joueur se déconnecte
-     */
     @Subscribe(order = PostOrder.LAST)
     public void onDisconnect(DisconnectEvent event) {
         ProxyPlayerDisconnectEvent disconnectEvent = new ProxyPlayerDisconnectEvent(
@@ -103,7 +100,6 @@ public class VelocityEventListener {
         );
         plugin.getEventManager().callEvent(disconnectEvent);
         
-        // Propager aux serveurs Bukkit
         broadcaster.broadcastProxyPlayerDisconnect(
                 event.getPlayer().getUsername(),
                 event.getPlayer().getUniqueId()

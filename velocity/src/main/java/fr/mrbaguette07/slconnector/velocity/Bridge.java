@@ -78,7 +78,7 @@ public class Bridge extends ProxyBridgeCommon<Velocityslconnector, Player> {
             }
 
             if (!player.getCurrentServer().isPresent() || !player.getCurrentServer().get().getServer().equals(server)) {
-                plugin.logDebug("Sending '" + playerName + "' to server '" + targetServer + "'. Triggered from "
+                plugin.logDebug("Envoi de '" + playerName + "' vers le serveur '" + targetServer + "'. Déclenché depuis "
                         + senderServer);
 
                 player.createConnectionRequest(server).connect().thenAccept(result -> {
@@ -87,7 +87,7 @@ public class Bridge extends ProxyBridgeCommon<Velocityslconnector, Player> {
                             LegacyComponentSerializer.legacySection().serialize(c)));
                 });
             } else {
-                plugin.logDebug("Player '" + playerName + "' is already on server '" + targetServer
+                plugin.logDebug("Le joueur '" + playerName + "' est déjà sur le serveur '" + targetServer
                         + "'! Triggered from " + senderServer);
                 sendResponse(senderServer, id, true, playerName + " is already connected to server " + targetServer);
             }
@@ -125,7 +125,7 @@ public class Bridge extends ProxyBridgeCommon<Velocityslconnector, Player> {
                 return;
             }
 
-            plugin.logDebug("Command '" + command + "' for player '" + playerName + "' triggered from " + senderServer);
+            plugin.logDebug("Commande '" + command + "' pour le joueur '" + playerName + "' déclenchée depuis " + senderServer);
             Player finalPlayer = player;
             plugin.getProxy().getCommandManager().executeAsync(finalPlayer, command)
                     .thenAccept(success -> sendResponse(finalPlayer, id, success));
@@ -137,7 +137,7 @@ public class Bridge extends ProxyBridgeCommon<Velocityslconnector, Player> {
             long id = in.readLong();
             String command = in.readUTF();
 
-            plugin.logDebug("Console command '" + command + "' triggered from " + senderServer);
+            plugin.logDebug("Commande console '" + command + "' déclenchée depuis " + senderServer);
             plugin.getProxy().getCommandManager().executeAsync(new BridgedSender(senderServer, id), command)
                     .thenAccept(success -> sendResponse(senderServer, id, success));
         });

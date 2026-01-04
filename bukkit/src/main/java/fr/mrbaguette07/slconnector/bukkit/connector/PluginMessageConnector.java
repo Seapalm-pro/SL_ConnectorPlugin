@@ -51,7 +51,7 @@ public class PluginMessageConnector extends BukkitConnector implements PluginMes
             String playerName = target.substring(PLAYER_PREFIX.length());
             player = getReceiver(playerName);
             if (player == null) {
-                plugin.logError("Player " + playerName + " wasn't found online?");
+                plugin.logError("Le joueur " + playerName + " n'a pas été trouvé en ligne ?");
                 return;
             }
         }
@@ -63,9 +63,9 @@ public class PluginMessageConnector extends BukkitConnector implements PluginMes
         try {
             handle(player, Message.fromByteArray(group, messageData));
         } catch (IllegalArgumentException e) {
-            plugin.logError("Invalid message target! " + e.getMessage());
+            plugin.logError("Cible de message invalide ! " + e.getMessage());
         } catch (VersionMismatchException e) {
-            plugin.getLogger().log(Level.WARNING, e.getMessage() + ". Ignoring message!");
+            plugin.getLogger().log(Level.WARNING, e.getMessage() + ". Message ignoré !");
         }
     }
 

@@ -54,7 +54,7 @@ public final class Bukkitslconnector extends JavaPlugin implements slconnector<P
         if ("changeme".equals(serverName)) {
             serverName = new File(".").getAbsoluteFile().getParentFile().getName();
             getLogger().log(Level.WARNING,
-                    "Server name is not configured! Please set it in your plugin config! Using the name of the server directory instead: "
+                    "Le nom du serveur n'est pas configuré ! Veuillez le définir dans la config du plugin ! Utilisation du nom du dossier du serveur à la place : "
                             + serverName);
         }
 
@@ -62,16 +62,17 @@ public final class Bukkitslconnector extends JavaPlugin implements slconnector<P
         switch (messengerType) {
             default:
                 getLogger().log(Level.WARNING,
-                        "Messenger type '" + messengerType + "' is not supported, falling back to plugin messages!");
+                        "Le type de messenger '" + messengerType + "' n'est pas supporté, utilisation des messages de plugin par défaut !");
             case "plugin_messages":
                 connector = new PluginMessageConnector(this);
-                getLogger().log(Level.WARNING, "Using plugin messages as the messenger type will come with" +
-                        " some caveats like sending to servers without players or to" +
-                        " other proxies not working!");
-                getLogger().log(Level.WARNING, "Please consider using one of the other messenger types!");
+                getLogger().log(Level.WARNING, "L'utilisation des messages de plugin comporte " +
+                        "certaines limitations comme l'envoi vers des serveurs sans joueurs ou vers " +
+                        "d'autres proxies qui ne fonctionnera pas !");
+                getLogger().log(Level.WARNING, "Veuillez considérer l'utilisation d'un autre type de messenger !");
                 break;
             case "redis":
                 connector = new RedisConnector(this);
+                logInfo("Utilisation du messenger Redis");
                 break;
         }
 

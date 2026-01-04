@@ -17,7 +17,7 @@ public class SLProxyPlayerJoinEvent extends Event {
     private final String serverName;
 
     public SLProxyPlayerJoinEvent(String playerName, UUID playerId, String serverName) {
-        super(true); // async
+        super(false);
         this.playerName = playerName;
         this.playerId = playerId;
         this.serverName = serverName;

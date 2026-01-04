@@ -16,6 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import fr.mrbaguette07.slconnector.bukkit.commands.ConnectorCommand;
 import fr.mrbaguette07.slconnector.bukkit.connector.BukkitConnector;
 import fr.mrbaguette07.slconnector.bukkit.connector.PluginMessageConnector;
+import fr.mrbaguette07.slconnector.bukkit.connector.ProxyEventHandler;
 import fr.mrbaguette07.slconnector.bukkit.connector.RedisConnector;
 import fr.mrbaguette07.slconnector.connector.ConnectingPlugin;
 import fr.mrbaguette07.slconnector.connector.MessageTarget;

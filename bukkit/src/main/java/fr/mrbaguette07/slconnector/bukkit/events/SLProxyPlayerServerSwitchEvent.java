@@ -18,7 +18,7 @@ public class SLProxyPlayerServerSwitchEvent extends Event {
     private final String toServer;
 
     public SLProxyPlayerServerSwitchEvent(String playerName, UUID playerId, String fromServer, String toServer) {
-        super(true); // async
+        super(false);
         this.playerName = playerName;
         this.playerId = playerId;
         this.fromServer = fromServer;

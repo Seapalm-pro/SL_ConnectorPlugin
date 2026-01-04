@@ -7,11 +7,9 @@ import fr.mrbaguette07.slconnector.connector.RedisConnection;
 
 public class RedisConnector extends BukkitConnector {
     private final RedisConnection connection;
-    private final ProxyEventHandler eventHandler;
 
     public RedisConnector(Bukkitslconnector plugin) {
         super(plugin, false);
-        this.eventHandler = new ProxyEventHandler(plugin);
         connection = new RedisConnection(
                 plugin,
                 plugin.getConfig().getString("redis.uri"),
@@ -21,8 +19,6 @@ public class RedisConnector extends BukkitConnector {
                 plugin.getConfig().getString("redis.password"),
                 plugin.getConfig().getLong("redis.timeout"),
                 (receiver, message) -> plugin.runSync(() -> handle(receiver, message)));
-        
-        registerMessageHandler(plugin, "ProxyEvent", (player, message) -> eventHandler.handleMessage(player, message));
     }
 
     @Override

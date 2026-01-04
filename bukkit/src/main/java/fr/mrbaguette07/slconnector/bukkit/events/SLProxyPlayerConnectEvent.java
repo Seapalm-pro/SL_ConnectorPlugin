@@ -16,7 +16,7 @@ public class SLProxyPlayerConnectEvent extends Event {
     private final UUID playerId;
 
     public SLProxyPlayerConnectEvent(String playerName, UUID playerId) {
-        super(true); // async
+        super(false);
         this.playerName = playerName;
         this.playerId = playerId;
     }

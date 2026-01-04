@@ -16,7 +16,7 @@ public class SLProxyPlayerDisconnectEvent extends Event {
     private final UUID playerId;
 
     public SLProxyPlayerDisconnectEvent(String playerName, UUID playerId) {
-        super(true); // async
+        super(false);
         this.playerName = playerName;
         this.playerId = playerId;
     }

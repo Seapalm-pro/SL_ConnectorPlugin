@@ -1,11 +1,9 @@
 package fr.mrbaguette07.slconnector.velocity;
 
-import com.google.common.io.ByteArrayDataOutput;
-import com.google.common.io.ByteStreams;
-import fr.mrbaguette07.slconnector.connector.Message;
 import fr.mrbaguette07.slconnector.connector.MessageTarget;
 import fr.mrbaguette07.slconnector.event.*;
 
+import java.io.IOException;
 import java.util.UUID;
 
 /**
@@ -22,63 +20,44 @@ public class VelocityEventBroadcaster {
      * Diffuse un événement ProxyPlayerConnect
      */
     public void broadcastProxyPlayerConnect(String playerName, UUID playerId) {
-        ByteArrayDataOutput out = ByteStreams.newDataOutput();
-        out.writeUTF("ProxyPlayerConnect");
-        out.writeUTF(playerName);
-        out.writeLong(playerId.getMostSignificantBits());
-        out.writeLong(playerId.getLeastSignificantBits());
-        
-        broadcastEvent(out.toByteArray());
+        ProxyPlayerConnectEvent event = new ProxyPlayerConnectEvent(playerName, playerId);
+        broadcastEvent(event);
     }
 
     /**
      * Diffuse un événement ProxyPlayerJoin
      */
     public void broadcastProxyPlayerJoin(String playerName, UUID playerId, String serverName) {
-        ByteArrayDataOutput out = ByteStreams.newDataOutput();
-        out.writeUTF("ProxyPlayerJoin");
-        out.writeUTF(playerName);
-        out.writeLong(playerId.getMostSignificantBits());
-        out.writeLong(playerId.getLeastSignificantBits());
-        out.writeUTF(serverName);
-        
-        broadcastEvent(out.toByteArray());
+        ProxyPlayerJoinEvent event = new ProxyPlayerJoinEvent(playerName, playerId, serverName);
+        broadcastEvent(event);
     }
 
     /**
      * Diffuse un événement ProxyPlayerServerSwitch
      */
     public void broadcastProxyPlayerServerSwitch(String playerName, UUID playerId, String fromServer, String toServer) {
-        ByteArrayDataOutput out = ByteStreams.newDataOutput();
-        out.writeUTF("ProxyPlayerServerSwitch");
-        out.writeUTF(playerName);
-        out.writeLong(playerId.getMostSignificantBits());
-        out.writeLong(playerId.getLeastSignificantBits());
-        out.writeUTF(fromServer);
-        out.writeUTF(toServer);
-        
-        broadcastEvent(out.toByteArray());
+        ProxyPlayerServerSwitchEvent event = new ProxyPlayerServerSwitchEvent(playerName, playerId, fromServer, toServer);
+        broadcastEvent(event);
     }
 
     /**
      * Diffuse un événement ProxyPlayerDisconnect
      */
     public void broadcastProxyPlayerDisconnect(String playerName, UUID playerId) {
-        ByteArrayDataOutput out = ByteStreams.newDataOutput();
-        out.writeUTF("ProxyPlayerDisconnect");
-        out.writeUTF(playerName);
-        out.writeLong(playerId.getMostSignificantBits());
-        out.writeLong(playerId.getLeastSignificantBits());
-        
-        broadcastEvent(out.toByteArray());
+        ProxyPlayerDisconnectEvent event = new ProxyPlayerDisconnectEvent(playerName, playerId);
+        broadcastEvent(event);
     }
 
     /**
-     * Envoie les données d'événement à tous les serveurs
+     * Sérialise et envoie un événement à tous les serveurs
      */
-    private void broadcastEvent(byte[] data) {
+    private void broadcastEvent(ProxyEvent event) {
         try {
+            byte[] data = ProxyEventSerializer.serialize(event);
             plugin.getConnector().sendData(plugin, "ProxyEvent", MessageTarget.ALL_QUEUE, data);
+            plugin.logDebug("Événement proxy diffusé: " + event.getClass().getSimpleName());
+        } catch (IOException e) {
+            plugin.logError("Erreur lors de la sérialisation d'un événement proxy", e);
         } catch (Exception e) {
             plugin.logError("Erreur lors de la diffusion d'un événement proxy", e);
         }

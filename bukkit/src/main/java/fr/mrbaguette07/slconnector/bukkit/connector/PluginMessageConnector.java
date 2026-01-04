@@ -21,16 +21,12 @@ import java.util.logging.Level;
 public class PluginMessageConnector extends BukkitConnector implements PluginMessageListener, Listener {
 
     private final Deque<byte[]> queue = new ArrayDeque<>();
-    private final ProxyEventHandler eventHandler;
 
     public PluginMessageConnector(Bukkitslconnector plugin) {
         super(plugin, true);
-        this.eventHandler = new ProxyEventHandler(plugin);
         plugin.getServer().getMessenger().registerOutgoingPluginChannel(plugin, plugin.getMessageChannel());
         plugin.getServer().getMessenger().registerIncomingPluginChannel(plugin, plugin.getMessageChannel(), this);
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
-        
-        registerMessageHandler(plugin, "ProxyEvent", (player, message) -> eventHandler.handleMessage(player, message));
     }
 
     @Override

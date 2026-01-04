@@ -28,27 +28,27 @@ public class TeleportCommand extends SubCommand {
         Player player = plugin.getProxy().getPlayer(args[0]).orElse(null);
         if (player == null) {
             sender.sendMessage(
-                    Component.text("No player with the name " + args[0] + " found!").color(NamedTextColor.RED));
+                    Component.text("Aucun joueur avec le nom " + args[0] + " trouvé !").color(NamedTextColor.RED));
             return true;
         }
 
         RegisteredServer server = plugin.getProxy().getServer(args[1]).orElse(null);
         if (server == null) {
             sender.sendMessage(
-                    Component.text("No server with the name " + args[1] + " found!").color(NamedTextColor.RED));
+                    Component.text("Aucun serveur avec le nom " + args[1] + " trouvé !").color(NamedTextColor.RED));
             return true;
         }
 
         if (args.length == 2) {
             player.createConnectionRequest(server).connect().thenAccept(result -> {
                 if (result.isSuccessful()) {
-                    sender.sendMessage(Component.text("Connected player " + player.getUsername() + " to server "
+                    sender.sendMessage(Component.text("Joueur " + player.getUsername() + " connecté au serveur "
                             + server.getServerInfo().getName()).color(NamedTextColor.GREEN));
                 } else {
                     sender.sendMessage(
                             Component
-                                    .text("Error while connecting player " + player.getUsername() + " to server "
-                                            + server.getServerInfo().getName() + ": "
+                                    .text("Erreur lors de la connexion du joueur " + player.getUsername() + " au serveur "
+                                            + server.getServerInfo().getName() + " : "
                                             + result.getReasonComponent().orElse(Component.empty()))
                                     .color(NamedTextColor.RED));
                 }
@@ -62,7 +62,7 @@ public class TeleportCommand extends SubCommand {
                             m -> sender.sendMessage(LegacyComponentSerializer.legacySection().deserialize(m)))
                     .thenAccept(success -> {
                         if (!success) {
-                            sender.sendMessage(Component.text("Error while teleporting...").color(NamedTextColor.RED));
+                            sender.sendMessage(Component.text("Erreur lors de la téléportation...").color(NamedTextColor.RED));
                         }
                     });
             return true;
@@ -87,13 +87,13 @@ public class TeleportCommand extends SubCommand {
                             m -> sender.sendMessage(LegacyComponentSerializer.legacySection().deserialize(m)))
                     .thenAccept(success -> {
                         if (!success) {
-                            sender.sendMessage(Component.text("Error while teleporting...").color(NamedTextColor.RED));
+                            sender.sendMessage(Component.text("Erreur lors de la téléportation...").color(NamedTextColor.RED));
                         }
                     });
             return true;
         } catch (IllegalArgumentException e) {
             sender.sendMessage(
-                    Component.text("Error while parsing input! " + e.getMessage()).color(NamedTextColor.RED));
+                    Component.text("Erreur lors de l'analyse des paramètres ! " + e.getMessage()).color(NamedTextColor.RED));
             return false;
         }
     }

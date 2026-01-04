@@ -55,7 +55,7 @@ public class PluginConfig {
             plugin.logDebug("Loaded " + configFile.getName());
             return true;
         } catch (IOException e) {
-            plugin.logError("Unable to load configuration file " + configFile.getName(), e);
+            plugin.logError("Impossible de charger le fichier de configuration " + configFile.getName(), e);
             return false;
         }
     }
@@ -63,7 +63,7 @@ public class PluginConfig {
     public boolean createDefaultConfig() throws IOException {
         try (InputStream in = plugin.getResourceAsStream(defaultFile)) {
             if (in == null) {
-                plugin.logWarning("No default config '" + defaultFile + "' found in " + plugin.getName() + "!");
+                plugin.logWarning("Aucune configuration par défaut '" + defaultFile + "' trouvée dans " + plugin.getName() + " !");
                 return false;
             }
             if (!configFile.exists()) {
@@ -75,11 +75,11 @@ public class PluginConfig {
                     Files.copy(in, configFile.toPath());
                     return true;
                 } catch (IOException ex) {
-                    plugin.logError("Could not save " + configFile.getName() + " to " + configFile, ex);
+                    plugin.logError("Impossible de sauvegarder " + configFile.getName() + " vers " + configFile, ex);
                 }
             }
         } catch (IOException ex) {
-            plugin.logError("Could not load default config from " + defaultFile, ex);
+            plugin.logError("Impossible de charger la configuration par défaut depuis " + defaultFile, ex);
         }
         return false;
     }

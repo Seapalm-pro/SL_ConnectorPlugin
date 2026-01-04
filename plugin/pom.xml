@@ -15,7 +15,7 @@
     <repositories>
         <repository>
             <id>papermc</id>
-            <url>https://papermc.io/repo/repository/maven-public/</url>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
     </repositories>
 
@@ -32,16 +32,16 @@
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>velocity</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
         <!--
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>bungee</artifactId>
-            <version>${project.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>${groupId}</groupId>
-            <artifactId>velocity</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>

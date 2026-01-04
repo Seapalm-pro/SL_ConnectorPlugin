@@ -62,18 +62,18 @@ public class Bridge extends ProxyBridgeCommon<Velocityslconnector, Player> {
             Player player = plugin.getProxy().getPlayer(playerName).orElse(null);
             if (player == null) {
                 plugin.logDebug(
-                        "Could not find player " + playerName + " on this proxy to send to server " + targetServer);
+                        "Impossible de trouver le joueur " + playerName + " sur ce proxy pour l'envoyer au serveur " + targetServer);
                 sendResponse(senderServer, id, false,
-                        "Could not find player " + playerName + " on this proxy to send to server " + targetServer);
+                        "Impossible de trouver le joueur " + playerName + " sur ce proxy pour l'envoyer au serveur " + targetServer);
                 return;
             }
 
             RegisteredServer server = plugin.getProxy().getServer(targetServer).orElse(null);
             if (server == null) {
-                plugin.logDebug("Could not find server " + targetServer + " on this proxy to send player " + playerName
-                        + " to");
-                sendResponse(senderServer, id, false, "Could not find server " + targetServer
-                        + " on this proxy to send player " + playerName + " to");
+                plugin.logDebug("Impossible de trouver le serveur " + targetServer + " sur ce proxy pour envoyer le joueur " + playerName
+                        + " vers celui-ci");
+                sendResponse(senderServer, id, false, "Impossible de trouver le serveur " + targetServer
+                        + " sur ce proxy pour envoyer le joueur " + playerName + " vers celui-ci");
                 return;
             }
 
@@ -118,10 +118,10 @@ public class Bridge extends ProxyBridgeCommon<Velocityslconnector, Player> {
             Player player = plugin.getProxy().getPlayer(playerId)
                     .orElseGet(() -> plugin.getProxy().getPlayer(playerName).orElse(null));
             if (player == null) {
-                plugin.logDebug("Could not find player " + playerName + "/" + playerId
-                        + " on this proxy to execute command " + command);
-                sendResponse(senderServer, id, false, "Could not find player " + playerName + "/" + playerId
-                        + " on this proxy to execute command " + command);
+                plugin.logDebug("Impossible de trouver le joueur " + playerName + "/" + playerId
+                        + " sur ce proxy pour exécuter la commande " + command);
+                sendResponse(senderServer, id, false, "Impossible de trouver le joueur " + playerName + "/" + playerId
+                        + " sur ce proxy pour exécuter la commande " + command);
                 return;
             }
 
@@ -160,8 +160,8 @@ public class Bridge extends ProxyBridgeCommon<Velocityslconnector, Player> {
             }
 
             if (sender == null) {
-                plugin.logDebug("Could not find player " + senderName + " for execution of command " + commandName
-                        + " for plugin " + pluginName);
+                plugin.logDebug("Impossible de trouver le joueur " + senderName + " pour l'exécution de la commande " + commandName
+                        + " pour le plugin " + pluginName);
                 return;
             }
 
@@ -169,7 +169,7 @@ public class Bridge extends ProxyBridgeCommon<Velocityslconnector, Player> {
                     commandName.toLowerCase(Locale.ROOT));
 
             if (command == null) {
-                plugin.logDebug("Could not find executor for command " + commandName + " for plugin " + pluginName);
+                plugin.logDebug("Impossible de trouver l'exécuteur pour la commande " + commandName + " pour le plugin " + pluginName);
                 return;
             }
 
@@ -214,22 +214,22 @@ public class Bridge extends ProxyBridgeCommon<Velocityslconnector, Player> {
         Player player = plugin.getProxy().getPlayer(playerName).orElse(null);
         if (player == null) {
             plugin.logDebug(
-                    "Could not find player " + playerName + " on this proxy to send to teleport to " + location);
+                    "Impossible de trouver le joueur " + playerName + " sur ce proxy pour le téléporter vers " + location);
             future.complete(false);
             for (Consumer<String> c : consumer) {
-                c.accept("Could not find player " + playerName + " on this proxy to teleport to " + location);
+                c.accept("Impossible de trouver le joueur " + playerName + " sur ce proxy pour le téléporter vers " + location);
             }
             return future;
         }
 
         RegisteredServer server = plugin.getProxy().getServer(location.getServer()).orElse(null);
         if (server == null) {
-            plugin.logDebug("Could not find server " + location.getServer() + " on this proxy to teleport player "
-                    + player.getUsername() + " to");
+            plugin.logDebug("Impossible de trouver le serveur " + location.getServer() + " sur ce proxy pour téléporter le joueur "
+                    + player.getUsername() + " vers celui-ci");
             future.complete(false);
             for (Consumer<String> c : consumer) {
-                c.accept("Could not find server " + location.getServer() + " on this proxy to teleport player "
-                        + player.getUsername() + " to");
+                c.accept("Impossible de trouver le serveur " + location.getServer() + " sur ce proxy pour téléporter le joueur "
+                        + player.getUsername() + " vers celui-ci");
             }
             return future;
         }
@@ -264,11 +264,11 @@ public class Bridge extends ProxyBridgeCommon<Velocityslconnector, Player> {
 
         Player player = plugin.getProxy().getPlayer(playerName).orElse(null);
         if (player == null) {
-            plugin.logDebug("Could not find player " + playerName + " on this proxy to send to teleport to "
+            plugin.logDebug("Impossible de trouver le joueur " + playerName + " sur ce proxy pour le téléporter vers "
                     + serverName + "/" + worldName);
             future.complete(false);
             for (Consumer<String> c : consumer) {
-                c.accept("Could not find player " + playerName + " on this proxy to teleport to " + serverName + "/"
+                c.accept("Impossible de trouver le joueur " + playerName + " sur ce proxy pour le téléporter vers " + serverName + "/"
                         + worldName);
             }
             return future;
@@ -276,12 +276,12 @@ public class Bridge extends ProxyBridgeCommon<Velocityslconnector, Player> {
 
         RegisteredServer server = plugin.getProxy().getServer(serverName).orElse(null);
         if (server == null) {
-            plugin.logDebug("Could not find server " + serverName + " on this proxy to teleport player "
-                    + player.getUsername() + " to");
+            plugin.logDebug("Impossible de trouver le serveur " + serverName + " sur ce proxy pour téléporter le joueur "
+                    + player.getUsername() + " vers celui-ci");
             future.complete(false);
             for (Consumer<String> c : consumer) {
-                c.accept("Could not find server " + serverName + " on this proxy to teleport player "
-                        + player.getUsername() + " to");
+                c.accept("Impossible de trouver le serveur " + serverName + " sur ce proxy pour téléporter le joueur "
+                        + player.getUsername() + " vers celui-ci");
             }
             return future;
         }
@@ -316,10 +316,10 @@ public class Bridge extends ProxyBridgeCommon<Velocityslconnector, Player> {
         Player player = plugin.getProxy().getPlayer(playerName).orElse(null);
         if (player == null) {
             plugin.logDebug(
-                    "Could not find player " + playerName + " on this proxy to send to teleport to " + targetName);
+                    "Impossible de trouver le joueur " + playerName + " sur ce proxy pour le téléporter vers " + targetName);
             future.complete(false);
             for (Consumer<String> c : consumer) {
-                c.accept("Could not find player " + playerName + " on this proxy to teleport to " + targetName);
+                c.accept("Impossible de trouver le joueur " + playerName + " sur ce proxy pour le téléporter vers " + targetName);
             }
             return future;
         }
@@ -327,13 +327,13 @@ public class Bridge extends ProxyBridgeCommon<Velocityslconnector, Player> {
         getServer(targetName).thenAccept(serverName -> {
             if (serverName == null || serverName.isEmpty()) {
                 // Player is not online or not connected to server
-                plugin.logDebug("Target player " + targetName
-                        + " is either not online or not connected to a server. (Tried to teleport "
-                        + player.getUsername() + " to them)");
+                plugin.logDebug("Le joueur cible " + targetName
+                        + " n'est pas en ligne ou pas connecté à un serveur. (Tentative de téléporter "
+                        + player.getUsername() + " vers lui)");
                 future.complete(false);
                 for (Consumer<String> c : consumer) {
-                    c.accept("Could not find target player " + targetName + " to teleport " + player.getUsername()
-                            + " to");
+                    c.accept("Impossible de trouver le joueur cible " + targetName + " pour téléporter " + player.getUsername()
+                            + " vers lui");
                 }
                 return;
             }
@@ -341,13 +341,13 @@ public class Bridge extends ProxyBridgeCommon<Velocityslconnector, Player> {
             Optional<RegisteredServer> server = plugin.getProxy().getServer(serverName);
             if (!server.isPresent()) {
                 // Player is online but their server doesn't exist on this proxy
-                plugin.logDebug("Target player " + targetName + " is online on server " + serverName
-                        + " which does not exist on this proxy! (Tried to teleport " + player.getUsername()
-                        + " to them)");
+                plugin.logDebug("Le joueur cible " + targetName + " est en ligne sur le serveur " + serverName
+                        + " qui n'existe pas sur ce proxy ! (Tentative de téléporter " + player.getUsername()
+                        + " vers lui)");
                 future.complete(false);
                 for (Consumer<String> c : consumer) {
-                    c.accept("Could not find server " + serverName + " of target player " + targetName + " on "
-                            + player.getUsername() + "'s proxy to teleport them");
+                    c.accept("Impossible de trouver le serveur " + serverName + " du joueur cible " + targetName + " sur "
+                            + "le proxy de " + player.getUsername() + " pour les téléporter");
                 }
                 return;
             }

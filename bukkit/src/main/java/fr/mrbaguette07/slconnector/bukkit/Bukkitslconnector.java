@@ -107,15 +107,11 @@ public final class Bukkitslconnector extends JavaPlugin implements slconnector<P
 
     @Override
     public void runAsync(Runnable runnable) {
-        getServer().getScheduler().runTaskAsynchronously(this, runnable);
+        FoliaScheduler.runAsync(this, runnable);
     }
 
     public void runSync(Runnable runnable) {
-        if (getServer().isPrimaryThread()) {
-            runnable.run();
-            return;
-        }
-        getServer().getScheduler().runTask(this, runnable);
+        FoliaScheduler.runSync(this, runnable);
     }
 
     @Override

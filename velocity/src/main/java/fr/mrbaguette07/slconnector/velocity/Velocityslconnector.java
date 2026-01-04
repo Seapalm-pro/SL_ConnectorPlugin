@@ -50,7 +50,7 @@ public final class Velocityslconnector implements slconnector<Player> {
         try {
             config.createDefaultConfig();
         } catch (IOException e) {
-            logger.error("Could not created default config! " + e.getMessage());
+            logger.error("Impossible de créer la configuration par défaut ! " + e.getMessage());
             return;
         }
         if (!config.load()) {
@@ -64,13 +64,13 @@ public final class Velocityslconnector implements slconnector<Player> {
         switch (messengerType) {
             default:
                 logger.warn(
-                        "Messenger type '" + messengerType + "' is not supported, falling back to plugin messages!");
+                        "Le type de messenger '" + messengerType + "' n'est pas supporté, utilisation des messages de plugin par défaut !");
             case "plugin_messages":
                 connector = new PluginMessageConnector(this);
-                logger.warn("Using plugin messages as the messenger type will come with" +
-                        " some caveats like sending to servers without players or to" +
-                        " other proxies not working!");
-                logger.warn("Please consider using one of the other messenger types!");
+                logger.warn("L'utilisation des messages de plugin comporte " +
+                        "certaines limitations comme l'envoi vers des serveurs sans joueurs ou vers " +
+                        "d'autres proxies qui ne fonctionnera pas !");
+                logger.warn("Veuillez considérer l'utilisation d'un autre type de messenger !");
                 break;
             case "redis":
                 connector = new RedisConnector(this);

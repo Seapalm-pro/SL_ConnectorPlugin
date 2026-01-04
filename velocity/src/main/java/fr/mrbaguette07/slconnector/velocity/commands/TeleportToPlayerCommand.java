@@ -41,7 +41,7 @@ public class TeleportToPlayerCommand extends SubCommand {
         Player target = plugin.getProxy().getPlayer(targetName).orElse(null);
         if (target == null) {
             sender.sendMessage(
-                    Component.text("No player with the name " + targetName + " found!").color(NamedTextColor.RED));
+                    Component.text("Aucun joueur avec le nom " + targetName + " trouvé !").color(NamedTextColor.RED));
             return true;
         }
 
@@ -50,7 +50,7 @@ public class TeleportToPlayerCommand extends SubCommand {
                         m -> sender.sendMessage(LegacyComponentSerializer.legacySection().deserialize(m)))
                 .thenAccept(success -> {
                     if (!success) {
-                        sender.sendMessage(Component.text("Error while teleporting...").color(NamedTextColor.RED));
+                        sender.sendMessage(Component.text("Erreur lors de la téléportation...").color(NamedTextColor.RED));
                     }
                 });
         return true;

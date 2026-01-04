@@ -82,7 +82,7 @@ public class PluginMessageConnector extends VelocityConnector {
                             plugin.logDebug(target + " doesn't exist?");
                         }
                     } else {
-                        plugin.logError(message.getTarget() + " message target requires explicit target!");
+                        plugin.logError(message.getTarget() + " la cible du message nécessite une cible explicite !");
                     }
                     break;
                 case PROXY:
@@ -90,10 +90,10 @@ public class PluginMessageConnector extends VelocityConnector {
                     handle(target, message);
                     break;
                 default:
-                    plugin.logError("Receiving " + message.getTarget() + " is not supported!");
+                    plugin.logError("La réception de " + message.getTarget() + " n'est pas supportée !");
             }
         } catch (IllegalArgumentException e) {
-            plugin.logError("Invalid message target! " + e.getMessage());
+            plugin.logError("Cible de message invalide ! " + e.getMessage());
         } catch (VersionMismatchException e) {
             plugin.logWarning(e.getMessage() + ". Ignoring message!");
         }
@@ -156,12 +156,12 @@ public class PluginMessageConnector extends VelocityConnector {
                 if (server != null) {
                     server.sendPluginMessage(messageChannel, dataToSend);
                 } else {
-                    throw new UnsupportedOperationException("Could not send data to " + message.getTarget()
-                            + " as target server wasn't found from " + targetData + "!");
+                    throw new UnsupportedOperationException("Impossible d'envoyer les données vers " + message.getTarget()
+                            + " car le serveur cible n'a pas été trouvé depuis " + targetData + " !");
                 }
                 break;
             default:
-                throw new UnsupportedOperationException("Sending to " + message.getTarget() + " is not supported!");
+                throw new UnsupportedOperationException("L'envoi vers " + message.getTarget() + " n'est pas supporté !");
         }
     }
 }

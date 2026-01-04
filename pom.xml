@@ -33,7 +33,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- Should be kept in sync with Spigot/Bungee -->
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
@@ -44,12 +43,6 @@
                 <groupId>io.lettuce</groupId>
                 <artifactId>lettuce-core</artifactId>
                 <version>6.3.2.RELEASE</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.eclipse.paho</groupId>
-                <artifactId>org.eclipse.paho.mqttv5.client</artifactId>
-                <version>1.2.5</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -71,18 +64,6 @@
                 <scope>provided</scope>
             </dependency>
             <dependency>
-                <groupId>net.md-5</groupId>
-                <artifactId>bungeecord-api</artifactId>
-                <version>1.16-R0.1-SNAPSHOT</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>fr.mrbaguette07</groupId>
-                <artifactId>bungeeplugin</artifactId>
-                <version>1.3-SNAPSHOT</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
                 <groupId>com.velocitypowered</groupId>
                 <artifactId>velocity-api</artifactId>
                 <version>3.4.0-SNAPSHOT</version>
@@ -94,7 +75,6 @@
     <modules>
         <module>core</module>
         <module>bukkit</module>
-        <module>bungee</module>
         <module>velocity</module>
         <module>plugin</module>
     </modules>

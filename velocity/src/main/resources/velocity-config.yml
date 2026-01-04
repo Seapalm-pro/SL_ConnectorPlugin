@@ -10,9 +10,3 @@ redis:
   db: 0
   timeout: 60
   password: password1
-
-mqtt:
-  broker-uri: tcp://localhost:1883
-  keep-alive: 30
-  username: mqttuser
-  password: password1

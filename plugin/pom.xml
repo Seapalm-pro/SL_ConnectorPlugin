@@ -38,22 +38,9 @@
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
-        <!--
-        <dependency>
-            <groupId>${groupId}</groupId>
-            <artifactId>bungee</artifactId>
-            <version>${project.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        -->
         <dependency>
             <groupId>io.lettuce</groupId>
             <artifactId>lettuce-core</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.paho</groupId>
-            <artifactId>org.eclipse.paho.mqttv5.client</artifactId>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -61,13 +48,6 @@
             <artifactId>paperlib</artifactId>
             <scope>compile</scope>
         </dependency>
-        <!--
-        <dependency>
-            <groupId>fr.mrbaguette07</groupId>
-            <artifactId>bungeeplugin</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        -->
     </dependencies>
 
     <build>
@@ -114,10 +94,6 @@
                 <configuration>
                     <relocations>
                         <relocation>
-                            <pattern>fr.mrbaguette07.bungeeplugin</pattern>
-                            <shadedPattern>fr.mrbaguette07.slconnector.bungee.plugin</shadedPattern>
-                        </relocation>
-                        <relocation>
                             <pattern>io.lettuce</pattern>
                             <shadedPattern>fr.mrbaguette07.slconnector.lib.lettuce</shadedPattern>
                             <excludes>
@@ -138,17 +114,6 @@
                         <relocation>
                             <pattern>org.reactivestreams</pattern>
                             <shadedPattern>fr.mrbaguette07.slconnector.lib.reactivestreams</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>org.eclipse.paho</pattern>
-                            <shadedPattern>fr.mrbaguette07.slconnector.lib.paho</shadedPattern>
-                            <excludes>
-                                <exclude>org.eclipse.paho.mqttv5.client.internal.TCPNetworkModuleFactory</exclude>
-                                <exclude>org.eclipse.paho.mqttv5.client.internal.SSLNetworkModuleFactory</exclude>
-                                <exclude>org.eclipse.paho.mqttv5.client.websocket.WebSocketNetworkModuleFactory</exclude>
-                                <exclude>org.eclipse.paho.mqttv5.client.websocket.WebSocketSecureNetworkModuleFactory</exclude>
-                                <exclude>org.eclipse.paho.mqttv5.client.spi.*</exclude>
-                            </excludes>
                         </relocation>
                         <relocation>
                             <pattern>io.papermc.lib</pattern>

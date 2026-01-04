@@ -15,7 +15,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.mrbaguette07.slconnector.bukkit.commands.ConnectorCommand;
 import fr.mrbaguette07.slconnector.bukkit.connector.BukkitConnector;
-import fr.mrbaguette07.slconnector.bukkit.connector.MqttConnector;
 import fr.mrbaguette07.slconnector.bukkit.connector.PluginMessageConnector;
 import fr.mrbaguette07.slconnector.bukkit.connector.RedisConnector;
 import fr.mrbaguette07.slconnector.connector.ConnectingPlugin;
@@ -73,9 +72,6 @@ public final class Bukkitslconnector extends JavaPlugin implements slconnector<P
                 break;
             case "redis":
                 connector = new RedisConnector(this);
-                break;
-            case "mqtt":
-                connector = new MqttConnector(this);
                 break;
         }
 

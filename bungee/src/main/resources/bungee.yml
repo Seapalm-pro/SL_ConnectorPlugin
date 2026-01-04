@@ -1,9 +1,0 @@
-name: slconnector
-version: ${minecraft.plugin.version}
-main: fr.mrbaguette07.slconnector.bungee.Bungeeslconnector
-author: mrbaguette07
-commands:
-  slconnectorbungee:
-    description: Connector plugin command
-    permission: slconnector.command
-    usage: /<command> teleport|teleporttoplayer|servercommand <server|p:player>|playercommand <player> <command...>

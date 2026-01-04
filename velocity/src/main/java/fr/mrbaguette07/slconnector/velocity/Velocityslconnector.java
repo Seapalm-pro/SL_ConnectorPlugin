@@ -11,7 +11,6 @@ import fr.mrbaguette07.slconnector.slconnector;
 import fr.mrbaguette07.slconnector.event.EventManager;
 import fr.mrbaguette07.slconnector.velocity.commands.ConnectorCommand;
 import fr.mrbaguette07.slconnector.velocity.connector.VelocityConnector;
-import fr.mrbaguette07.slconnector.velocity.connector.MqttConnector;
 import fr.mrbaguette07.slconnector.velocity.connector.PluginMessageConnector;
 import fr.mrbaguette07.slconnector.velocity.connector.RedisConnector;
 import fr.mrbaguette07.slconnector.connector.MessageTarget;
@@ -77,9 +76,6 @@ public final class Velocityslconnector implements slconnector<Player> {
                 break;
             case "redis":
                 connector = new RedisConnector(this);
-                break;
-            case "mqtt":
-                connector = new MqttConnector(this);
                 break;
         }
 

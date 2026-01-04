@@ -12,7 +12,6 @@
     <artifactId>core</artifactId>
 
     <dependencies>
-        <!-- Should be kept in sync with Spigot/Bungee -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -20,10 +19,6 @@
         <dependency>
             <groupId>io.lettuce</groupId>
             <artifactId>lettuce-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.paho</groupId>
-            <artifactId>org.eclipse.paho.mqttv5.client</artifactId>
         </dependency>
     </dependencies>
 
